@@ -61,8 +61,6 @@
 
 В поле "Remote host" вбиваем наш IPv4, ставим галочку в поле "Specify username" и вписываем туда "root", далее жмем "OK".
 
-![image](_attachments/Pasted%20image%2020220801184439.png)
-
 У нас появится командная строка с запросом пароля, вбиваем туда наш пароль (который мы получили по почте). Символы видны не будут, можно вставлять в терминал что - то из буффера комбинацией клавиш "Shift+Insert". Вставляем пароль и жмем ENTER. Не сохраняем пароль, если нам Moba это предложит.
 
 Так как это временный пароль, нам необходимо будет вбить его еще раз и далее вбить наш новый пароль 2 раза. Делаем.
@@ -87,8 +85,6 @@
 ![image](_attachments/Pasted%20image%2020220801185632.png)
 
 Выбираем себе ник и жмем синюю кнопку.
-
-![image](_attachments/Pasted%20image%2020220801185729.png)
 
 В качестве метода защиты я выбрал "Secure Passphrase".
 
@@ -361,15 +357,12 @@ near login
 
 Полностью копируем ссылку из терминала и вставляем ее в браузер, в котором мы залогинены в наш кошелек.
 
-![image](_attachments/Pasted%20image%2020220801232603.png)
 
 Жмем "Next".
 
-![image](_attachments/Pasted%20image%2020220801232634.png)
 
 Жмем "Connect".
 
-![image](_attachments/Pasted%20image%2020220801232703.png)
 
 Вставляем адрес нашего кошелька в поле и жмем "Confirm". На этом этапе просто ждем, пока появится такая страница.
 
@@ -393,21 +386,18 @@ cat ~/.near/validator_key.json
 
 ![image](_attachments/Pasted%20image%2020220801233156.png)
 
-Придумаем название для нашего пула (pool_id). Я выбрал название как при создании кошелька "cryptobusher666". Теперь мой пул называется "cryptobusher666.factory.shardnet.near". Вбиваем команду (замените pool_id на свой), в моем случае:
+Придумаем название для нашего пула (pool_id). Я выбрал название как при создании кошелька "mihauman222". Теперь мой пул называется "mihauman222.factory.shardnet.near". Вбиваем команду (замените pool_id на свой), в моем случае:
 
 ```
-near generate-key cryptobusher666.factory.shardnet.near
+near generate-key mihauman222.factory.shardnet.near
 ```
 
-![image](_attachments/Pasted%20image%2020220801233546.png)
 
 Вбиваем команду, предварительно заменив pool_id на ваш собственный.
 
 ```
-cp ~/.near-credentials/shardnet/cryptobusher666.factory.shardnet.near.json ~/.near/validator_key.json
+cp ~/.near-credentials/shardnet/mihauman222.factory.shardnet.near.json ~/.near/validator_key.json
 ```
-
-![image](_attachments/Pasted%20image%2020220801233751.png)
 
 Так как мы работаем в MobaXTerm, мы можем облегчить себе жизнь при редактировании .json файла, просто переходим в навигаторе (слева) в папку "root -> .near".
 
@@ -423,12 +413,9 @@ cp ~/.near-credentials/shardnet/cryptobusher666.factory.shardnet.near.json ~/.ne
 ![image](_attachments/Pasted%20image%2020220801234141.png)
 
 Нужно удостоверится, что тут указан ваш pool_id. Если это не так - редактируем.
-
-![image](_attachments/Pasted%20image%2020220801234251.png)
+у меня mihauman222.factory.shardnet.near
 
 Жмем "CTRL+S". Сохраняем все данные в блокнот, они нам могут пригодиться, будет гораздо удобнее иметь к ним легкий доступ.
-
-![image](_attachments/Pasted%20image%2020220801234319.png)
 
 Жмем "Yes".
 
@@ -448,11 +435,7 @@ target/release/neard run
 sudo vi /etc/systemd/system/neard.service
 ```
 
-![image](_attachments/Pasted%20image%2020220801234918.png)
-
 Открывается редактор, жмем клавишу "i".
-
-![image](_attachments/Pasted%20image%2020220801234931.png)
 
 Вставляем такой вот скрипт, предварительно подправив имя юзера на свое в путях. Вот как выглядит шаблон от разработчиков (обратите внимание на \<USER>).
 
@@ -498,16 +481,11 @@ KillMode=mixed
 WantedBy=multi-user.target
 ```
 
-![image](_attachments/Pasted%20image%2020220801235523.png)
-
 Эмем "ESC".
 
-![image](_attachments/Pasted%20image%2020220801235545.png)
 
 Жмем ":", вписываем "wq" и жмем "ENTER".
 
-![image](_attachments/Pasted%20image%2020220801235631.png)
-![image](_attachments/Pasted%20image%2020220801235645.png)
 
 ```
 sudo systemctl enable neard
@@ -552,8 +530,8 @@ near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool 
 Меняем следующие поля на свои:
 - "staking_pool_id": "\<pool id>" - тут меняем \<pool id> на свой (только первая часть названия), я вбиваю сюда "cryptobusher666"
 - "owner_id": "\<accountId>" - тут меняем \<accountId> на свой, я вбиваю сюда "cryptobusher666.shardnet.near"
-- "stake_public_key": "\<public key>" - тут меняем \<public key> на свой, который можно найти в файле "validator_key.json" (мы сохраняли эти данные в нашем прошлом задании) я вбиваю сюда "ed25519:Bdki49wnff9SHF4ZpUYvrvf9KyAKezDSTWfX8sCVdfqu"
-- --accountId="\<accountId>" - тут меняем \<accountId> на свой, я вбиваю сюда "cryptobusher666.shardnet.near"
+- "stake_public_key": "\<public key>" - тут меняем \<public key> на свой, который можно найти в файле "validator_key.json" (мы сохраняли эти данные в нашем прошлом задании) 
+- --accountId="\<accountId>" - тут меняем \<accountId> на свой
 
 В итоге финальная команда в моем случае выглядит так:
 
@@ -563,9 +541,7 @@ near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "crypto
 
 ![image](_attachments/Pasted%20image%2020220802001334.png)
 
-Можем зайти в [эксплорер](https://explorer.shardnet.near.org/) и проверить, что произошло на нашем аккаунте (в моем случае на "cryptobusher666.shardnet.near").  Виден успешный вызов метода и изменение баланса (примерно на 30 Near).
-
-![image](_attachments/Pasted%20image%2020220802001456.png)
+Можем зайти в [эксплорер](https://explorer.shardnet.near.org/) и проверить, что произошло на нашем аккаунте.  Виден успешный вызов метода и изменение баланса (примерно на 30 Near).
 
 Можете изменить параметры пула (например комиссия), можете использовать следующую команду, однако я этого делать не буду.
 
@@ -578,7 +554,7 @@ near call <pool_name> update_reward_fee_fraction '{"reward_fee_fraction": {"nume
 На сколько я понял, нам нужно некоторое минимальное количество Near для того, чтоб стать валидатором (поправьте, если не прав), однако после данных операций я еще не являюсь валидатором, мне нужно запросить токены в дискорде Near. Для того, чтоб получить токены через дискорд, нужно попасть в proposals. Проверить это можно следующей командой (подставьте название своего пула).
 
 ```
- near proposals | grep cryptobusher666
+ near proposals | grep mihauman222
 ```
 
 Мне ничего не выдало, должно быть так вообще:
@@ -598,17 +574,16 @@ near call <staking_pool_id> deposit_and_stake --amount <amount> --accountId <acc
 У меня команда выглядит так:
 
 ```
-near call cryptobusher666.factory.shardnet.near deposit_and_stake --amount 49 --accountId cryptobusher666.shardnet.near --gas=300000000000000
+near call mihauman222.factory.shardnet.near deposit_and_stake --amount 49 --accountId mihauman222.shardnet.near --gas=300000000000000
 ```
 
 Появились дополнительные токены в пуле.
 
-![image](_attachments/Pasted%20image%2020220802004500.png)
 
 Проверяем, попали ли мы в proposals:
 
 ```
- near proposals | grep cryptobusher666
+ near proposals | grep mihauman222
 ```
 
 ![image](_attachments/Pasted%20image%2020220802004543.png)
@@ -619,7 +594,7 @@ near call cryptobusher666.factory.shardnet.near deposit_and_stake --amount 49 --
 
 Просим токены, это может затянуться, так как очередь на раздачу большая, просто терпеливо ждем и иногда напоминаем о себе (не стоит спамить). Пока я не получил токены, иду дальше выполнять задания.
 
-![image](_attachments/Pasted%20image%2020220802004851.png)
+
 
 ## Задание 04
 
@@ -749,11 +724,10 @@ ls
 vim ping.sh
 ```
 
-![image](_attachments/Pasted%20image%2020220802150830.png)
 
 Жму "i".
 
-![image](_attachments/Pasted%20image%2020220802150854.png)
+
 
 Вставляю данный скрипт, предварительно изменив пути. Вот так выглядит шаблон.
 
@@ -782,8 +756,8 @@ near validators next | grep $POOLID >> $LOGS/all.log
 
 export NEAR_ENV=shardnet
 export LOGS=/root/logs
-export POOLID=cryptobusher666
-export ACCOUNTID=cryptobusher666
+export POOLID=mihauman222
+export ACCOUNTID=mihauman222
 
 echo "---" >> $LOGS/all.log
 date >> $LOGS/all.log
@@ -800,8 +774,6 @@ near validators next | grep $POOLID >> $LOGS/all.log
 ![image](_attachments/Pasted%20image%2020220802151258.png)
 
 Жму ":" и пишу "wq".
-
-![image](_attachments/Pasted%20image%2020220802151332.png)
 
 Жму "ENTER".
 
@@ -833,21 +805,12 @@ crontab -e
 
 Я выбрал второй вариант, жму "2" и "ENTER".
 
-![image](_attachments/Pasted%20image%2020220802151712.png)
-
 Все как обычно, жму "i", вставляю скрипт, предварительно заменив значение на свое, вот шаблон:
 
 ```
 0 */2 * * * sh /home/<USER_ID>/scripts/ping.sh
 ```
 
-Вот мой вариант:
-
-```
-0 */2 * * * sh /root/scripts/ping.sh
-```
-
-![image](_attachments/Pasted%20image%2020220802151805.png)
 
 Жму "ESC", жму ":", пишу "wq" и жму "ENTER".
 
@@ -929,10 +892,8 @@ NEAR_ENV=shardnet near deploy <OWNER_ID>.shardnet.near --wasmFile target/wasm32-
 Вот как выглядит моя команда:
 
 ```
-NEAR_ENV=shardnet near deploy cryptobusher666.shardnet.near --wasmFile target/wasm32-unknown-unknown/release/contract.wasm
+NEAR_ENV=shardnet near deploy mihauman222.shardnet.near --wasmFile target/wasm32-unknown-unknown/release/contract.wasm
 ```
-
-![image](_attachments/Pasted%20image%2020220802153438.png)
 
 Создаем переменную, вот шаблон команды:
 
@@ -943,7 +904,7 @@ CONTRACT_ID=<OWNER_ID>.shardnet.near
 Моя команда выглядит так:
 
 ```
-CONTRACT_ID=cryptobusher666.shardnet.near
+CONTRACT_ID=mihauman222.shardnet.near
 ```
 
 ![image](_attachments/Pasted%20image%2020220802154046.png)
@@ -955,15 +916,6 @@ CONTRACT_ID=cryptobusher666.shardnet.near
 ```
 NEAR_ENV=shardnet near call $CONTRACT_ID new '{"staking_pool_account_id": "<STAKINGPOOL_ID>.factory.shardnet.near", "owner_id":"<OWNER_ID>.shardnet.near", "reward_receivers": [["<SPLITED_ACCOUNT_ID_1>.shardnet.near", {"numerator": 3, "denominator":10}], ["<SPLITED_ACCOUNT_ID_2>.shardnet.near", {"numerator": 70, "denominator":100}]]}' --accountId $CONTRACT_ID
 ```
-
-Вот моя команда (немного подправил еще "numerator" и "denominator" чтоб изменить распределение наград, можете тоже поиграться).
-
-```
-NEAR_ENV=shardnet near call $CONTRACT_ID new '{"staking_pool_account_id": "cryptobusher666.factory.shardnet.near", "owner_id":"cryptobusher666.shardnet.near", "reward_receivers": [["cryptobusher666.shardnet.near", {"numerator": 5, "denominator":10}], ["cryptobusher6662.shardnet.near", {"numerator": 5, "denominator":10}]]}' --accountId $CONTRACT_ID
-```
-
-![image](_attachments/Pasted%20image%2020220802155211.png)
-
 Необходимо подождать, пока мы начнем получать реварды и сделать их вывод. Это можно сделать после завершения эпохи, которая длится 12 часов. Ждем и вбиваем команду, скорректировав все своими значениями. Вот шаблон:
 
 ```
@@ -977,7 +929,7 @@ NEAR_ENV=shardnet near call $CONTRACT_ID withdraw '{}' --accountId $CONTRACT_ID 
 Вот мой вариант:
 
 ```
-CONTRACT_ID=cryptobusher666.shardnet.near
+CONTRACT_ID=mihauman222.shardnet.near
 ```
 
 ```
