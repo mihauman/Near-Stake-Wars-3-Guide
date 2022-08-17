@@ -110,8 +110,6 @@
 sudo apt update && sudo apt upgrade -y
 ```
 
-![image](_attachments/Pasted%20image%2020220801190557.png)
-
 ```
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash - 
 ```
@@ -370,14 +368,6 @@ near login
 
 Идем обратно в терминал и вбиваем адрес нашего кошелька, жмем ENTER. Должна появиться инфа о том, что кошелек подключен.
 
-![image](_attachments/Pasted%20image%2020220801232919.png)
-
-	```
-	cd ..
-	```
-	
-	![image](_attachments/Pasted%20image%2020220801233031.png)
-
 ```
 cat ~/.near/validator_key.json
 ```
@@ -533,11 +523,6 @@ near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool 
 - "stake_public_key": "\<public key>" - тут меняем \<public key> на свой, который можно найти в файле "validator_key.json" (мы сохраняли эти данные в нашем прошлом задании) 
 - --accountId="\<accountId>" - тут меняем \<accountId> на свой
 
-В итоге финальная команда в моем случае выглядит так:
-
-```
-near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "cryptobusher666", "owner_id": "cryptobusher666.shardnet.near", "stake_public_key": "ed25519:Bdki49wnff9SHF4ZpUYvrvf9KyAKezDSTWfX8sCVdfqu", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="cryptobusher666.shardnet.near" --amount=30 --gas=300000000000000
-```
 
 ![image](_attachments/Pasted%20image%2020220802001334.png)
 
@@ -585,8 +570,6 @@ near call mihauman222.factory.shardnet.near deposit_and_stake --amount 49 --acco
 ```
  near proposals | grep mihauman222
 ```
-
-![image](_attachments/Pasted%20image%2020220802004543.png)
 
 Ура, попали. Идем в [дискорд Near](https://discord.com/invite/UY9Xf2k), в канал  "stake-wars-tokens_delegation".
 
@@ -767,11 +750,8 @@ near validators current | grep $POOLID >> $LOGS/all.log
 near validators next | grep $POOLID >> $LOGS/all.log
 ```
 
-![image](_attachments/Pasted%20image%2020220802151235.png)
-
 Жму "ESC". 
 
-![image](_attachments/Pasted%20image%2020220802151258.png)
 
 Жму ":" и пишу "wq".
 
@@ -907,9 +887,8 @@ CONTRACT_ID=<OWNER_ID>.shardnet.near
 CONTRACT_ID=mihauman222.shardnet.near
 ```
 
-![image](_attachments/Pasted%20image%2020220802154046.png)
 
-Тут нам нужен еще один аккаунт для получения наград. Создаем новый аккаунт в Shardnet сети, мы это делали в первом задании, все происходит похожим образом. Я создал новый аккаунт "cryptobusher6662.shardnet.near" (там двойка в конце).
+Тут нам нужен еще один аккаунт для получения наград. Создаем новый аккаунт в Shardnet сети, мы это делали в первом задании, все происходит похожим образом. Я создал новый аккаунт "mihauman222.shardnet.near" (там двойка в конце).
 
 Вбиваем следующую команду, предварительно сменив некоторые значения на свои. Вот шаблон:
 
